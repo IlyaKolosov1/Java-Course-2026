@@ -1,0 +1,21 @@
+id,name,status,species,type,gender,origin/name,location/name,created
+1,Rick Sanchez,Alive,Human,,Male,Earth (C-137),Citadel of Ricks,2017-11-04T18:48:46.250Z
+2,Morty Smith,Alive,Human,,Male,unknown,Citadel of Ricks,2017-11-04T18:50:21.651Z
+3,Summer Smith,Alive,Human,,Female,Earth (Replacement Dimension),Earth (Replacement Dimension),2017-11-04T19:09:56.428Z
+4,Beth Smith,Alive,Human,,Female,Earth (Replacement Dimension),Earth (Replacement Dimension),2017-11-04T19:22:43.665Z
+5,Jerry Smith,Alive,Human,,Male,Earth (Replacement Dimension),Earth (Replacement Dimension),2017-11-04T19:26:56.301Z
+6,Abadango Cluster Princess,Alive,Alien,,Female,Abadango,Abadango,2017-11-04T19:50:28.250Z
+7,Abradolf Lincler,unknown,Human,Genetic experiment,Male,Earth (Replacement Dimension),Testicle Monster Dimension,2017-11-04T19:59:20.523Z
+8,Adjudicator Rick,Dead,Human,,Male,unknown,Citadel of Ricks,2017-11-04T20:03:34.737Z
+9,Agency Director,Dead,Human,,Male,Earth (Replacement Dimension),Earth (Replacement Dimension),2017-11-04T20:06:54.976Z
+10,Alan Rails,Dead,Human,Superhuman (Ghost trains summoner),Male,unknown,Worldender's lair,2017-11-04T20:19:09.017Z
+11,Albert Einstein,Dead,Human,,Male,Earth (C-137),Earth (Replacement Dimension),2017-11-04T20:20:20.965Z
+12,Alexander,Dead,Human,,Male,Earth (C-137),Anatomy Park,2017-11-04T20:32:33.144Z
+13,Alien Googah,unknown,Alien,,unknown,unknown,Earth (Replacement Dimension),2017-11-04T20:33:30.779Z
+14,Alien Morty,unknown,Alien,,Male,unknown,Citadel of Ricks,2017-11-04T20:51:31.373Z
+15,Alien Rick,unknown,Alien,,Male,unknown,Citadel of Ricks,2017-11-04T20:56:13.215Z
+16,Amish Cyborg,Dead,Alien,Parasite,Male,unknown,Earth (Replacement Dimension),2017-11-04T21:12:45.235Z
+17,Annie,Alive,Human,,Female,Earth (C-137),Anatomy Park,2017-11-04T22:21:24.481Z
+18,Antenna Morty,Alive,Human,Human with antennae,Male,unknown,Citadel of Ricks,2017-11-04T22:25:29.008Z
+19,Antenna Rick,unknown,Human,Human with antennae,Male,unknown,unknown,2017-11-04T22:28:13.756Z
+20,Ants in my Eyes Johnson,unknown,Human,Human with ants in his eyes,Male,unknown,Interdimensional Cable,2017-11-04T22:34:53.659Z

@@ -1,0 +1,8 @@
+java-backend-course-demo/
+
+.idea/
+.vscode/
+
+**/target/
+
+.DS_Store
