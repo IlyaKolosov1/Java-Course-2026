@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 import java.nio.file.Path;
 
 public class CharacterCsvRepository {
@@ -57,5 +57,17 @@ public class CharacterCsvRepository {
             columns[7],
             columns[8]
     );
+    }
+
+    public Optional<CharacterRecord> findById(long id) throws IOException {
+    List<CharacterRecord> characters = findAll();
+
+    for (CharacterRecord character : characters) {
+        if (character.id() == id) {
+            return Optional.of(character);
+        }
+    }
+
+    return Optional.empty();
     }
 }
