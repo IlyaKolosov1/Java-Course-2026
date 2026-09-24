@@ -2,7 +2,6 @@ package ru.kolosov.lab1.writer;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,11 +20,16 @@ public class TypeFileWriter {
                 writer.newLine();
             }
         } catch (IOException exception) {
-            System.err.println("Failed to write result file: " + outputFile);
-            throw new UncheckedIOException(
-                    "Failed to write result file: " + outputFile,
+            throw new RuntimeException(
+                    "Can't write in file by path: " + outputFile,
                     exception
             );
+        }
+    }
+
+    public void writeTypesInConsole(Set<String> types) {
+        for (String type : types) {
+            System.out.println(type);
         }
     }
 }
