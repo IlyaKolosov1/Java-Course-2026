@@ -19,6 +19,7 @@ public class CharacterTypeReader {
         // try-with-resources
         try (BufferedReader reader = Files.newBufferedReader(inputFile, StandardCharsets.UTF_8)){
 
+            // skip frst row
             reader.readLine();
 
             String line;
@@ -26,6 +27,7 @@ public class CharacterTypeReader {
             while((line = reader.readLine()) != null){
                 String[] columns = line.split(",", -1);
 
+                // in case bad formated
                 if (columns.length <= 4) {
                     throw new IllegalArgumentException("Incorrect string CSV " + line);
                 }
