@@ -139,4 +139,20 @@ public class CharacterCsvRepository {
 
     return false;
     }
+
+    public boolean deleteById(long id) throws IOException {
+    List<CharacterRecord> characters = findAll();
+
+    for (int i = 0; i < characters.size(); i++) {
+        CharacterRecord character = characters.get(i);
+
+        if (character.id() == id) {
+            characters.remove(i);
+            writeAll(characters);
+            return true;
+        }
+    }
+
+    return false;
+    }
 }
