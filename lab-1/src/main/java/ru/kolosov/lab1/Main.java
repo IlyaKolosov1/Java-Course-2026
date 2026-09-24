@@ -19,5 +19,6 @@ public class Main {
 
         HashSet<String> types = reader.readTypes(inputFile);
         writer.writeTypes(outputFile, types);
+        writer.writeTypesInConsole(types);
     }
 }

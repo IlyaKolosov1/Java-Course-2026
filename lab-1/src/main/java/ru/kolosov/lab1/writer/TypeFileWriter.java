@@ -28,5 +28,18 @@ public class TypeFileWriter {
         }
     }
 
+    public void  writeTypesInConsole(Set<String> types){
+        try {
+            for (String type : types){
+                System.out.printf(type + '\n');
+            }
+        } catch (Exception exception) {
+            throw new RuntimeException(
+                "Can't write in console by path: ",
+                exception
+            );
+
+        }
+    }
     
 }
