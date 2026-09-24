@@ -2,6 +2,7 @@ package ru.kolosov.lab1.repository;
 
 import ru.kolosov.lab1.model.CharacterRecord;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -13,6 +14,9 @@ import java.nio.file.Path;
 
 public class CharacterCsvRepository {
     private final Path csvFile;
+
+    private static final String CSV_HEADER =
+        "id,name,status,species,type,gender,origin/name,location/name,created";
 
     public CharacterCsvRepository(Path csvFile) {
         this.csvFile = csvFile;
@@ -59,6 +63,21 @@ public class CharacterCsvRepository {
     );
     }
 
+    private String toCsvLine(CharacterRecord character) {
+    return String.join(
+            ",",
+            Long.toString(character.id()),
+            character.name(),
+            character.status(),
+            character.species(),
+            character.type(),
+            character.gender(),
+            character.originName(),
+            character.locationName(),
+            character.created()
+    );
+    }
+
     public Optional<CharacterRecord> findById(long id) throws IOException {
     List<CharacterRecord> characters = findAll();
 
@@ -70,4 +89,38 @@ public class CharacterCsvRepository {
 
     return Optional.empty();
     }
+
+    private void writeAll(List<CharacterRecord> characters)
+        throws IOException {
+
+    try (BufferedWriter writer =
+                 Files.newBufferedWriter(csvFile, StandardCharsets.UTF_8)) {
+
+        writer.write(CSV_HEADER);
+        writer.newLine();
+
+        for (CharacterRecord character : characters) {
+            writer.write(toCsvLine(character));
+            writer.newLine();
+        }
+    }
+    }
+
+    public void create(CharacterRecord newCharacter) throws IOException {
+    List<CharacterRecord> characters = findAll();
+
+    for (CharacterRecord character : characters) {
+        if (character.id() == newCharacter.id()) {
+            throw new IllegalArgumentException(
+                    "Character with id "
+                    + newCharacter.id()
+                    + " already exists"
+            );
+        }
+    }
+
+    characters.add(newCharacter);
+    writeAll(characters);
+    }
+
 }
