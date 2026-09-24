@@ -123,4 +123,20 @@ public class CharacterCsvRepository {
     writeAll(characters);
     }
 
+    public boolean update(CharacterRecord updatedCharacter) throws IOException {
+
+    List<CharacterRecord> characters = findAll();
+
+    for (int i = 0; i < characters.size(); i++) {
+        CharacterRecord currentCharacter = characters.get(i);
+
+        if (currentCharacter.id() == updatedCharacter.id()) {
+            characters.set(i, updatedCharacter);
+            writeAll(characters);
+            return true;
+        }
+    }
+
+    return false;
+    }
 }
