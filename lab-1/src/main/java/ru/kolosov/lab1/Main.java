@@ -11,7 +11,7 @@ import java.util.HashSet;
 
 public class Main {
 
-    // private static final long TEST_CHARACTER_ID = 1000;
+    private static final long TEST_CHARACTER_ID = 1000;
 
     public static void main(String[] args) throws IOException {
         Path inputFile = Path.of(
@@ -30,57 +30,49 @@ public class Main {
 
         // CharacterCsvRepository repository =
         //         new CharacterCsvRepository(inputFile);
-
         // demonstrateCrud(repository);
     }
 
-        // private static void demonstrateCrud(
-        //         CharacterCsvRepository repository
-        // ) throws IOException {
+    private static void demonstrateCrud(
+            CharacterCsvRepository repository
+    ) throws IOException {
+        CharacterRecord newCharacter = new CharacterRecord(
+                TEST_CHARACTER_ID,
+                "Test Rick",
+                "Alive",
+                "Human",
+                "Test type",
+                "Male",
+                "Earth",
+                "Citadel of Ricks",
+                "2026-09-24T00:00:00.000Z"
+        );
 
-        //     CharacterRecord newCharacter = new CharacterRecord(
-        //             TEST_CHARACTER_ID,
-        //             "Test Rick",
-        //             "Alive",
-        //             "Human",
-        //             "Test type",
-        //             "Male",
-        //             "Earth",
-        //             "Citadel of Ricks",
-        //             "2026-09-24T00:00:00.000Z"
-        //     );
+        repository.create(newCharacter);
 
-        //     repository.create(newCharacter);
+        System.out.println("\nCreated:");
+        System.out.println(repository.findById(TEST_CHARACTER_ID));
 
-        //     System.out.println("\nCreated:");
-        //     System.out.println(
-        //             repository.findById(TEST_CHARACTER_ID)
-        //     );
+        CharacterRecord updatedCharacter = new CharacterRecord(
+                TEST_CHARACTER_ID,
+                "Updated Rick",
+                "Dead",
+                "Human",
+                "Updated type",
+                "Male",
+                "Earth",
+                "Citadel of Ricks",
+                "2026-09-24T00:00:00.000Z"
+        );
 
-        //     CharacterRecord updatedCharacter = new CharacterRecord(
-        //             TEST_CHARACTER_ID,
-        //             "Updated Rick",
-        //             "Dead",
-        //             "Human",
-        //             "Updated type",
-        //             "Male",
-        //             "Earth",
-        //             "Citadel of Ricks",
-        //             "2026-09-24T00:00:00.000Z"
-        //     );
+        boolean updated = repository.update(updatedCharacter);
 
-        //     boolean updated = repository.update(updatedCharacter);
+        System.out.println("\nUpdated: " + updated);
+        System.out.println(repository.findById(TEST_CHARACTER_ID));
 
-        //     System.out.println("\nUpdated: " + updated);
-        //     System.out.println(
-        //             repository.findById(TEST_CHARACTER_ID)
-        //     );
+        boolean deleted = repository.deleteById(TEST_CHARACTER_ID);
 
-        //     boolean deleted = repository.deleteById(TEST_CHARACTER_ID);
-
-        //     System.out.println("\nDeleted: " + deleted);
-        //     System.out.println(
-        //             repository.findById(TEST_CHARACTER_ID)
-        //     );
-        // }
+        System.out.println("\nDeleted: " + deleted);
+        System.out.println(repository.findById(TEST_CHARACTER_ID));
+    }
 }

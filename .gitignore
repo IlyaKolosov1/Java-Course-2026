@@ -8,3 +8,4 @@ java-backend-course-demo/
 .DS_Store
 
 lab-1/types.txt
+*.csv
