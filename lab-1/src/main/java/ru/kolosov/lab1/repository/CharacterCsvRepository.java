@@ -22,7 +22,7 @@ public class CharacterCsvRepository {
         this.csvFile = csvFile;
     }
 
-    public List<CharacterRecord> findAll() throws IOException {
+    public List<CharacterRecord> findAll() {
         List<CharacterRecord> characters = new ArrayList<>();
 
         try (BufferedReader reader = Files.newBufferedReader(csvFile, StandardCharsets.UTF_8)) {
@@ -44,12 +44,17 @@ public class CharacterCsvRepository {
                 CharacterRecord character = parseCharacter(columns);
                 characters.add(character);
             }
+        } catch (IOException exception) {
+            throw new RuntimeException(
+                    "Can't read file by path: " + csvFile,
+                    exception
+            );
         }
 
         return characters;
     }
 
-    public Optional<CharacterRecord> findById(long id) throws IOException {
+    public Optional<CharacterRecord> findById(long id) {
         List<CharacterRecord> characters = findAll();
 
         for (CharacterRecord character : characters) {
@@ -61,7 +66,7 @@ public class CharacterCsvRepository {
         return Optional.empty();
     }
 
-    public void create(CharacterRecord newCharacter) throws IOException {
+    public void create(CharacterRecord newCharacter) {
         List<CharacterRecord> characters = findAll();
 
         for (CharacterRecord character : characters) {
@@ -78,7 +83,7 @@ public class CharacterCsvRepository {
         writeAll(characters);
     }
 
-    public boolean update(CharacterRecord updatedCharacter) throws IOException {
+    public boolean update(CharacterRecord updatedCharacter) {
         List<CharacterRecord> characters = findAll();
 
         for (int i = 0; i < characters.size(); i++) {
@@ -94,7 +99,7 @@ public class CharacterCsvRepository {
         return false;
     }
 
-    public boolean deleteById(long id) throws IOException {
+    public boolean deleteById(long id) {
         List<CharacterRecord> characters = findAll();
 
         for (int i = 0; i < characters.size(); i++) {
@@ -139,7 +144,7 @@ public class CharacterCsvRepository {
         );
     }
 
-    private void writeAll(List<CharacterRecord> characters) throws IOException {
+    private void writeAll(List<CharacterRecord> characters) {
         try (BufferedWriter writer = Files.newBufferedWriter(csvFile, StandardCharsets.UTF_8)) {
             writer.write(CSV_HEADER);
 
@@ -147,6 +152,11 @@ public class CharacterCsvRepository {
                 writer.newLine();
                 writer.write(toCsvLine(character));
             }
+        } catch (IOException exception) {
+            throw new RuntimeException(
+                    "Can't write file by path: " + csvFile,
+                    exception
+            );
         }
     }
 }

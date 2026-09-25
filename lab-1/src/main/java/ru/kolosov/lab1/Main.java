@@ -5,7 +5,6 @@ import ru.kolosov.lab1.reader.CharacterTypeReader;
 import ru.kolosov.lab1.repository.CharacterCsvRepository;
 import ru.kolosov.lab1.writer.TypeFileWriter;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashSet;
 
@@ -13,7 +12,7 @@ public class Main {
 
     private static final long TEST_CHARACTER_ID = 1000;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Path inputFile = Path.of(
                 "lab-1/src/main/resources/characters.csv"
         );
@@ -35,7 +34,7 @@ public class Main {
 
     private static void demonstrateCrud(
             CharacterCsvRepository repository
-    ) throws IOException {
+    ) {
         CharacterRecord newCharacter = new CharacterRecord(
                 TEST_CHARACTER_ID,
                 "Test Rick",

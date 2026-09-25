@@ -11,7 +11,7 @@ import java.nio.file.Files;
 public class CharacterTypeReader {
 
     // public - can be executed from Main
-    public HashSet<String> readTypes(Path inputFile) throws IOException {
+    public HashSet<String> readTypes(Path inputFile) {
         HashSet<String> types = new HashSet<>();
 
         // try-with-resources
@@ -35,6 +35,11 @@ public class CharacterTypeReader {
                     types.add(type);
                 }
             }
+        } catch (IOException exception) {
+            throw new RuntimeException(
+                    "Can't read file by path: " + inputFile,
+                    exception
+            );
         }
 
         return types;
