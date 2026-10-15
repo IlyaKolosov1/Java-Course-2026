@@ -9,3 +9,5 @@ java-backend-course-demo/
 
 lab-1/types.txt
 *.csv
+
+.env
