@@ -13,26 +13,28 @@ public class Main {
         String password = requireEnvironmentVariable("DATABASE_PASSWORD");
         String schema = requireEnvironmentVariable("DATABASE_SCHEMA");
 
-        DatabaseConnection databaseConnection = new DatabaseConnection(
-                url, username, password, schema);
-
         new DatabaseMigrator(url, username, password, schema).migrate();
-        ItemRepository repository = new JdbcItemRepository(databaseConnection);
 
-        ItemEntity newItem = new ItemEntity("Lab 2 demo item", 10);
-        int id = repository.save(newItem);
-        System.out.println("save returned id: " + id);
+        // При выходе из блока автоматически закрывается весь HikariCP-пул.
+        try (DatabaseConnection databaseConnection = new DatabaseConnection(
+                url, username, password, schema)) {
+            ItemRepository repository = new JdbcItemRepository(databaseConnection);
 
-        System.out.println("findById: " + repository.findById(id));
-        System.out.println("findByName: " + repository.findByName(newItem.getName()));
-        System.out.println("findAll count: " + repository.findAll().size());
+            ItemEntity newItem = new ItemEntity("Lab 2 demo item", 10);
+            int id = repository.save(newItem);
+            System.out.println("save returned id: " + id);
 
-        ItemEntity updatedItem = new ItemEntity(id, "Lab 2 demo item updated", 12);
-        System.out.println("update returned: " + repository.update(updatedItem));
-        System.out.println("updated item: " + repository.findById(id));
+            System.out.println("findById: " + repository.findById(id));
+            System.out.println("findByName: " + repository.findByName(newItem.getName()));
+            System.out.println("findAll count: " + repository.findAll().size());
 
-        repository.deleteById(id);
-        System.out.println("findById after delete: " + repository.findById(id));
+            ItemEntity updatedItem = new ItemEntity(id, "Lab 2 demo item updated", 12);
+            System.out.println("update returned: " + repository.update(updatedItem));
+            System.out.println("updated item: " + repository.findById(id));
+
+            repository.deleteById(id);
+            System.out.println("findById after delete: " + repository.findById(id));
+        }
     }
 
     private static String requireEnvironmentVariable(String name) {

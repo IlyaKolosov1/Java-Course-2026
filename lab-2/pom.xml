@@ -14,6 +14,7 @@
     <properties>
         <flyway.version>13.10.0</flyway.version>
         <postgres.version>42.7.14</postgres.version>
+        <hikaricp.version>7.1.0</hikaricp.version>
     </properties>
     <dependencies>
 
@@ -21,6 +22,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgres.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
         </dependency>
 
         <dependency>
