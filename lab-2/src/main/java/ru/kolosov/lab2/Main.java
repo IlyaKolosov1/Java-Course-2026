@@ -1,22 +1,22 @@
 package ru.kolosov.lab2;
 
 import ru.kolosov.lab2.database.DatabaseConnection;
-import ru.kolosov.lab2.database.ItemTableInitializer;
+import ru.kolosov.lab2.database.DatabaseMigrator;
 import ru.kolosov.lab2.model.ItemEntity;
 import ru.kolosov.lab2.repository.ItemRepository;
 import ru.kolosov.lab2.repository.JdbcItemRepository;
 
-import java.sql.SQLException;
-
 public class Main {
-    public static void main(String[] args) throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection(
-                requireEnvironmentVariable("DATABASE_URL"),
-                requireEnvironmentVariable("DATABASE_USERNAME"),
-                requireEnvironmentVariable("DATABASE_PASSWORD"),
-                requireEnvironmentVariable("DATABASE_SCHEMA"));
+    public static void main(String[] args) {
+        String url = requireEnvironmentVariable("DATABASE_URL");
+        String username = requireEnvironmentVariable("DATABASE_USERNAME");
+        String password = requireEnvironmentVariable("DATABASE_PASSWORD");
+        String schema = requireEnvironmentVariable("DATABASE_SCHEMA");
 
-        new ItemTableInitializer().initialize(databaseConnection);
+        DatabaseConnection databaseConnection = new DatabaseConnection(
+                url, username, password, schema);
+
+        new DatabaseMigrator(url, username, password, schema).migrate();
         ItemRepository repository = new JdbcItemRepository(databaseConnection);
 
         ItemEntity newItem = new ItemEntity("Lab 2 demo item", 10);
