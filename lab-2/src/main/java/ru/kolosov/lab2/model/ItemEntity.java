@@ -34,4 +34,9 @@ public class ItemEntity{
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "ItemEntity{id=" + id + ", name='" + name + "', quantity=" + quantity + "}";
+    }
+
 }
