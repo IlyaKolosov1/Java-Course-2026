@@ -49,7 +49,6 @@ public class JdbcItemRepository implements ItemRepository {
         this.databaseConnection = databaseConnection;
     }
 
-    @Override
     public int save(ItemEntity item) {
         if (item == null) {
             throw new IllegalArgumentException("Товар не должен быть null");
@@ -74,7 +73,6 @@ public class JdbcItemRepository implements ItemRepository {
         }
     }
 
-    @Override
     public ItemEntity findById(int id) {
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(
@@ -91,7 +89,6 @@ public class JdbcItemRepository implements ItemRepository {
         }
     }
 
-    @Override
     public ItemEntity findByName(String name) {
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(
@@ -108,7 +105,6 @@ public class JdbcItemRepository implements ItemRepository {
         }
     }
 
-    @Override
     public List<ItemEntity> findAll() {
         List<ItemEntity> items = new ArrayList<>();
         try (Connection connection = databaseConnection.getConnection();
@@ -124,7 +120,6 @@ public class JdbcItemRepository implements ItemRepository {
         }
     }
 
-    @Override
     public boolean update(ItemEntity item) {
         if (item == null || item.getId() == null) {
             throw new IllegalArgumentException("Для обновления нужны товар и его id");
@@ -142,7 +137,6 @@ public class JdbcItemRepository implements ItemRepository {
         }
     }
 
-    @Override
     public void deleteById(int id) {
         try (Connection connection = databaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(
