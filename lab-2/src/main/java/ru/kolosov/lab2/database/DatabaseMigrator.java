@@ -21,7 +21,6 @@ public class DatabaseMigrator {
                 .schemas(schema)
                 .defaultSchema(schema)
                 .createSchemas(true)
-                .baselineOnMigrate(true)
                 .load()
                 .migrate();
     }
